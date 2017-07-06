@@ -17,7 +17,8 @@
   "autoload": {
     "psr-4": {
       "IIAB\\Symlinks\\": "src/"
-    }
+    },
+    "classmap": [ "src/class-iiab-script-handler.php" ]
   },
   "extra": {
     "branch-alias": {
