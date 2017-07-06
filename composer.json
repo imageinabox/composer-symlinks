@@ -1,9 +1,7 @@
 {
   "name": "iiab/composer-symlinks",
   "description": "Composer script for handling the creation of symlinks for any project. Optional to provide the path or define it on the composer install if it isn't already set.",
-  "type": "library",
   "license": "GPL-3.0",
-  "version": "0.0.1",
   "keywords": [ "composer", "script", "symlink" ],
   "homepage": "https://github.com/imageinabox/composer-symlinks/",
   "authors": [
@@ -13,12 +11,17 @@
     }
   ],
   "require": {
-    "symfony/filesystem": "^3.3",
-    "composer/composer": "^1.4"
+    "php": "^5.6",
+    "symfony/filesystem": "^3.3"
   },
   "autoload": {
     "psr-4": {
       "IIAB\\Symlinks\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
     }
   }
 }
