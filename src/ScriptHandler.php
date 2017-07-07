@@ -6,10 +6,6 @@ namespace IIAB\Symlinks;
 use Composer\Script\Event;
 use Symfony\Component\Filesystem\Filesystem;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Class ScriptHandler
  * @package       IIAB\Symlinks
@@ -21,37 +17,32 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class ScriptHandler {
 
-	public static function createSymlinks( Event $event, Filesystem $filesystem = null ) {
+	public static function createSymlinks( Event $event) {
 
 		$package = $event->getComposer()->getPackage();
-		$config  = $event->getComposer()->getConfig();
 		$io      = $event->getIO();
 
-		$base = dirname( $config->get( 'vendor-dir' ) );
-		var_dump( $base );
-
-		$symlinks = $package->getExtra()['iiab-symlinks'];
-		if ( ! empty( $symlinks ) || ! is_array( $symlinks ) ) {
+		$extras = $package->getExtra();
+		$symlinks = isset( $extras['iiab-symlinks'] ) ? $extras['iiab-symlinks'] : [];
+		if ( empty( $symlinks ) || ! is_array( $symlinks ) ) {
 			$symlinks = [];
 		}
 
-		$filesystem = is_null( $filesystem ) ? new Filesystem() : $filesystem;
+		$filesystem = new Filesystem();
 
-		foreach ( $symlinks as $key => $link ) {
+		foreach ( $symlinks as $link ) {
 
-			var_dump( $link );
-			/*
 			if ( file_exists( $link ) ) {
 				continue;
 			}
 
 			$io->write( '<comment>Some symlinks are missing. Lets get them added.</comment>' );
 
-			$value = $io->ask( sprintf( '<question>%s</question> (<comment>%s</comment>): ', $link, '' ), '' );
+			$value = $io->ask( sprintf( '<question>%s</question> : ', $link, '' ), '' );
 
 			if ( ! empty( $value ) ) {
 				$filesystem->symlink( $value, $link );
-			}*/
+			}
 		}
 	}
 }

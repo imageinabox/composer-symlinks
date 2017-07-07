@@ -17,12 +17,22 @@
   "autoload": {
     "psr-4": {
       "IIAB\\Symlinks\\": "src/"
-    },
-    "classmap": [ "src/class-iiab-script-handler.php" ]
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "IIAB\\Symlinks\\ScriptHandler::createSymlinks"
+    ],
+    "post-update-cmd": [
+      "IIAB\\Symlinks\\ScriptHandler::createSymlinks"
+    ]
   },
   "extra": {
     "branch-alias": {
       "dev-master": "0.0.x-dev"
-    }
+    },
+    "iiab-symlinks": [
+      "vendor/bb-plugin"
+    ]
   }
 }
