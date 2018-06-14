@@ -36,7 +36,7 @@ class ScriptHandler {
 				continue;
 			}
 
-			$io->write( '<comment>Some symlinks are missing. Lets get them added.</comment>' );
+			$io->write( '<comment>"' . $link . '" symlink is missing. Let\'s add it now.</comment>' );
 
 			$value = $io->ask( sprintf( '<question>%s</question> : ', $link, '' ), '' );
 
